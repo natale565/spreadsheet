@@ -115,3 +115,14 @@ const charRange = (start, end) =>
       });
     });
   };
+
+  const update = (event) => {
+    const element = event.target;
+    const value = element.value.replace(/\s/g, "");
+    if (!value.includes(element.id) && value.startsWith("=")) {
+      element.value = evalFormula(
+        value.slice(1),
+        Array.from(document.getElementById("container").children)
+      );
+    }
+  };
